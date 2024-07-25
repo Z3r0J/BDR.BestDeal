@@ -1,0 +1,6 @@
+@BDR.BestDeal.WareHousingCompany_HostAddress = http://localhost:5144
+
+GET {{BDR.BestDeal.WareHousingCompany_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

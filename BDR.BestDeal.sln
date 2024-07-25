@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34902.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDR.BestDeal.Application", "BDR.BestDeal.Application\BDR.BestDeal.Application.csproj", "{91428303-2D40-49B3-B894-D7F3FC8F90AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDR.BestDeal.DimAddressCompany", "BDR.BestDeal.WareHousingCompany\BDR.BestDeal.DimAddressCompany.csproj", "{AB399E9F-750E-4BD9-96EC-A6F992B77559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDR.BestDeal.CargonizerCompany", "BDR.BestDeal.CargonizerCompany\BDR.BestDeal.CargonizerCompany.csproj", "{30327061-53B1-42C6-8681-F7E78652DE0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDR.BestDeal.XMLLogisticsCompany", "BDR.BestDeal.XMLLogisticsCompany\BDR.BestDeal.XMLLogisticsCompany.csproj", "{CDD84712-9B29-49E0-A530-59BF647DA37F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDR.BestDeal.Client", "BDR.BestDeal.Client\BDR.BestDeal.Client.csproj", "{BA7704D3-5BFC-4F66-8744-475480668B83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91428303-2D40-49B3-B894-D7F3FC8F90AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91428303-2D40-49B3-B894-D7F3FC8F90AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91428303-2D40-49B3-B894-D7F3FC8F90AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91428303-2D40-49B3-B894-D7F3FC8F90AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB399E9F-750E-4BD9-96EC-A6F992B77559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB399E9F-750E-4BD9-96EC-A6F992B77559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB399E9F-750E-4BD9-96EC-A6F992B77559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB399E9F-750E-4BD9-96EC-A6F992B77559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30327061-53B1-42C6-8681-F7E78652DE0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30327061-53B1-42C6-8681-F7E78652DE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30327061-53B1-42C6-8681-F7E78652DE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30327061-53B1-42C6-8681-F7E78652DE0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD84712-9B29-49E0-A530-59BF647DA37F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD84712-9B29-49E0-A530-59BF647DA37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD84712-9B29-49E0-A530-59BF647DA37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD84712-9B29-49E0-A530-59BF647DA37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7704D3-5BFC-4F66-8744-475480668B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7704D3-5BFC-4F66-8744-475480668B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7704D3-5BFC-4F66-8744-475480668B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7704D3-5BFC-4F66-8744-475480668B83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A408966D-265A-4EB6-B0C6-58EECA896DBF}
+	EndGlobalSection
+EndGlobal
