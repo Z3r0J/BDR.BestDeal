@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using BDR.BestDeal.Application.Client.Entities;
-using BDR.BestDeal.Application.Interfaces;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 
 namespace BDR.BestDeal.Application.Dtos.Cargonizer;
