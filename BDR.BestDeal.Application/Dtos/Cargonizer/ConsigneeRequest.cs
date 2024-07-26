@@ -1,21 +1,18 @@
 ﻿using System.Text.Json;
 using BDR.BestDeal.Application.Client.Entities;
 using BDR.BestDeal.Application.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace BDR.BestDeal.Application.Dtos.Cargonizer;
 
 public record struct ConsigneeRequest(
     string Consignee,
     string Consignor,
-    List<int> Cartons) : IRequestFactory
+    List<int> Cartons)
 {
-    public string CreateRequest(Request request)
+    public Task<ValidationResult?> Validate(IValidator<ConsigneeRequest> validator)
     {
-        var consignee =
-            new ConsigneeRequest(request.SourceAddress, request.DestinationAddress, request.CartonDimensions);
-
-        var consigneeJsonRequest = JsonSerializer.Serialize(consignee);
-
-        return consigneeJsonRequest;
+        return validator.ValidateAsync(this);
     }
 }

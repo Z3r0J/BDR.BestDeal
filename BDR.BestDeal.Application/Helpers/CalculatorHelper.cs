@@ -4,9 +4,9 @@ public class CalculatorHelper
 {
     public static float Calculator(List<int> dimensionPackageCarton)
     {
-        var price = new Random().Next(10, 900);
+        var price = new Random().Next(10, 2000);
 
-        if (dimensionPackageCarton.Count <= 0) return price;
+        if (dimensionPackageCarton is { Count: <= 0 }) return price;
 
         var priceForPackages = dimensionPackageCarton.Sum() * price;
         return priceForPackages;

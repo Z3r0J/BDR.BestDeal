@@ -1,23 +1,20 @@
 ﻿using System.Text.Json;
 using BDR.BestDeal.Application.Client.Entities;
 using BDR.BestDeal.Application.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace BDR.BestDeal.Application.Dtos.DimAddress;
 
 public record struct WareHouseRequest(
     string ContactAddress,
     string WareHouseAddress,
-    List<int> Dimensions) : IRequestFactory
+    List<int> Dimensions)
 {
 
-    public string CreateRequest(Request request)
+    public async Task<ValidationResult?> Validate(IValidator<WareHouseRequest> validator)
     {
-        var wareHouse =
-            new WareHouseRequest(request.SourceAddress, request.DestinationAddress, request.CartonDimensions);
-
-        var wareHouseJson = JsonSerializer.Serialize(wareHouse);
-
-        return wareHouseJson;
+        return await validator.ValidateAsync(this);
     }
 
 }

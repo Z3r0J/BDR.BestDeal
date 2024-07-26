@@ -15,7 +15,7 @@ public record struct PackageResponse
 
     public static PackageResponse GetQuote(PackageRequest request)
     {
-        var quote = CalculatorHelper.Calculator(request.Packages);
+        var quote = CalculatorHelper.Calculator(request.Packages ?? []);
 
         return new PackageResponse(quote);
     }

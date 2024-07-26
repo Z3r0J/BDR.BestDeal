@@ -9,11 +9,11 @@ public record struct WareHouseResponse
         Amount = amount;
     }
 
-    public float Amount { get; set; }
+    public float Amount { get; private set; }
 
     public static WareHouseResponse GetAmount(WareHouseRequest request)
     {
-        var amount = CalculatorHelper.Calculator(request.Dimensions);
+        var amount = CalculatorHelper.Calculator(request.Dimensions ?? []);
         return new WareHouseResponse(amount);
     }
 }

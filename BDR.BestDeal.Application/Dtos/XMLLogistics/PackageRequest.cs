@@ -1,12 +1,11 @@
-﻿using System.Text;
-using System.Xml.Serialization;
-using BDR.BestDeal.Application.Client.Entities;
-using BDR.BestDeal.Application.Interfaces;
+﻿using System.Xml.Serialization;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace BDR.BestDeal.Application.Dtos.XMLLogistics;
 
 [XmlRoot("root")]
-public record struct PackageRequest : IRequestFactory
+public record struct PackageRequest
 {
 
     [XmlElement("source")]
@@ -19,31 +18,9 @@ public record struct PackageRequest : IRequestFactory
     [XmlArrayItem("package")]
     public List<int> Packages { get; init; }
 
-
-    private string GetPackageList()
+    public async Task<ValidationResult?> Validate(IValidator<PackageRequest> validator)
     {
-        if (Packages is { Count: <= 0 }) return "<package/>";
-
-        var builder = new StringBuilder();
-
-        foreach (var package in Packages)
-        {
-            builder.AppendLine($"<package>{package}</package>");
-        }
-
-        return builder.ToString();
+        return await validator.ValidateAsync(this);
     }
 
-    public string CreateRequest(Request request)
-    {
-        return $"""
-                <xml>
-                     <root>
-                         <source>{Source}</source>
-                         <destination>{Destination}</destination>
-                         <packages>{GetPackageList()}</packages>
-                     </root>
-                </xml>
-                """;
-    }
 }
