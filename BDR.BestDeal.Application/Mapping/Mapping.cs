@@ -9,7 +9,7 @@ public static class Mapping
 {
     public static PackageRequest ToPackage(this Request request)
     {
-        return new PackageRequest()
+        return new PackageRequest
         {
             Source = request.SourceAddress,
             Destination = request.DestinationAddress,
