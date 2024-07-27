@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BDR.BestDeal.Application.Validators;
 
-internal class WarehouseRequestValidator : AbstractValidator<WareHouseRequest>
+public class WarehouseRequestValidator : AbstractValidator<WareHouseRequest>
 {
     public WarehouseRequestValidator()
     {

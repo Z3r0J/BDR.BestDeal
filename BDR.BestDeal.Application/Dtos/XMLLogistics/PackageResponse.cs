@@ -6,12 +6,17 @@ namespace BDR.BestDeal.Application.Dtos.XMLLogistics;
 [XmlRoot("xml")]
 public record struct PackageResponse
 {
+    public PackageResponse()
+    {
+        
+    }
     private PackageResponse(float quote)
     {
         Quote = quote;
     }
 
-    [XmlElement("quote")] public float Quote { get; private set; }
+    [XmlElement("quote")] 
+    public float Quote { get; set; }
 
     public static PackageResponse GetQuote(PackageRequest request)
     {
