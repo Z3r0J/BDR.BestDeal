@@ -12,4 +12,24 @@ public static class DependencyInjection
 
         return services;
     }
+
+    public static IServiceCollection AddClient(this IServiceCollection services)
+    {
+        services.AddHttpClient(Constants.CargonizerClient, client =>
+        {
+            client.BaseAddress = new Uri("##");
+        });
+        
+        services.AddHttpClient(Constants.DimAddressClient, client =>
+        {
+            client.BaseAddress = new Uri("##");
+        });
+
+        services.AddHttpClient(Constants.XmlLogisticsClient, client =>
+        {
+            client.BaseAddress = new Uri("##");
+        });
+
+        return services;
+    }
 }

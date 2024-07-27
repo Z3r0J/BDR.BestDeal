@@ -13,7 +13,7 @@ public record struct ConsigneeResponse
 
     public static ConsigneeResponse GetTotal(ConsigneeRequest request)
     {
-        var total = CalculatorHelper.Calculator(request.Cartons ?? []);
+        var total = CalculatorHelper.Calculator(request.Cartons);
 
         return new ConsigneeResponse(total);
     }

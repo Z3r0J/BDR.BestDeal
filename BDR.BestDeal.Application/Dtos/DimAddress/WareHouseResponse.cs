@@ -13,7 +13,7 @@ public record struct WareHouseResponse
 
     public static WareHouseResponse GetAmount(WareHouseRequest request)
     {
-        var amount = CalculatorHelper.Calculator(request.Dimensions ?? []);
+        var amount = CalculatorHelper.Calculator(request.Dimensions);
         return new WareHouseResponse(amount);
     }
 }
