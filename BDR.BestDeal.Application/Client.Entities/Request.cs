@@ -16,7 +16,7 @@ public record struct Request
     public List<int> CartonDimensions { get; private set; }
 
 
-    public Request Create(string source, string destination, List<int> dimensions)
+    public static Request Create(string source, string destination, List<int> dimensions)
     {
         return new Request(source, destination, dimensions);
     }

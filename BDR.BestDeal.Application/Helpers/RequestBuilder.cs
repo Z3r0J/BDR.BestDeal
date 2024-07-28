@@ -6,23 +6,24 @@ namespace BDR.BestDeal.Application.Helpers;
 
 public static class RequestBuilder
 {
-    public static string JsonRequest<T>(T obj) where T : class
+    public static StringContent JsonRequest<T>(T obj)
     {
         var jsonSerializer = JsonSerializer.Serialize(obj);
-        return jsonSerializer;
+        return new StringContent(jsonSerializer,Encoding.UTF8,"application/json");
     }
 
-    public static string XmlRequest(PackageRequest request)
+    public static StringContent XmlRequest(PackageRequest request)
     {
-        return $"""
-                <xml>
+        var xmlString = $"""
+                <?xml version='1.0' encoding='UTF-8'?>
                      <root>
                          <source>{request.Source}</source>
                          <destination>{request.Destination}</destination>
                          <packages>{GetPackageList(request.Packages)}</packages>
                      </root>
-                </xml>
                 """;
+
+        return new StringContent(xmlString, Encoding.UTF8, "application/xml");
     }
 
     private static string GetPackageList(List<int> packages)

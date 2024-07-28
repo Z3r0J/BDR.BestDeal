@@ -15,7 +15,7 @@ public class PackagesController(IValidator<PackageRequest> validator) : Controll
     [Produces("application/xml")]
     public async Task<IActionResult> GetQuoteAsync([FromBody]PackageRequest request)
     {
-        var validation = await request.Validate(validator);
+        var validation = await request.Validate(_validator);
         var response = PackageResponse.GetQuote(request);
 
         if (validation is { IsValid: true }) return Ok(response);

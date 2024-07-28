@@ -1,6 +1,7 @@
 ﻿using BDR.BestDeal.Application;
 using BDR.BestDeal.Application.Interfaces;
 using BDR.BestDeal.Client.EntryPoint;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BDR.BestDeal.Client.Container;
@@ -15,7 +16,13 @@ public static class ServiceProvider
     {
         var services = new ServiceCollection();
 
-        services.AddClient();
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+
+        services.AddSingleton<IConfiguration>(configuration);
+        services.AddClient(configuration);
         services.AddScoped<IAppStarter, AppStarter>();
 
         return services.BuildServiceProvider();

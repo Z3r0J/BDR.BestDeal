@@ -1,15 +1,22 @@
-﻿using BDR.BestDeal.Application.Helpers;
+﻿using System.Text.Json.Serialization;
+using BDR.BestDeal.Application.Helpers;
 
 namespace BDR.BestDeal.Application.Dtos.DimAddress;
 
 public record struct WareHouseResponse
 {
+    public WareHouseResponse()
+    {
+        
+    }
+
     private WareHouseResponse(float amount)
     {
         Amount = amount;
     }
-
-    public float Amount { get; private set; }
+    
+    [JsonPropertyName("total")]
+    public float Amount { get; init; }
 
     public static WareHouseResponse GetAmount(WareHouseRequest request)
     {
