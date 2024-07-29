@@ -2,7 +2,7 @@
 
 namespace BDR.BestDeal.Application.Helpers;
 
-internal class Constants
+public class Constants
 {
     public static Assembly ApplicationAssembly = Assembly.GetExecutingAssembly();
     public static string CargonizerClient = "CargonizerAPI";

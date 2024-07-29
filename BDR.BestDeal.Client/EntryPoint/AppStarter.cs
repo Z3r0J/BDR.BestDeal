@@ -20,8 +20,8 @@ internal class AppStarter(MainServices services) : IAppStarter
         Printer.Print(responses);
 
         stopWatch.Stop();
-        Console.WriteLine($"The operation took {stopWatch.ElapsedMilliseconds} ms");
 
+        Console.WriteLine($"The operation took {stopWatch.ElapsedMilliseconds} ms");
         Console.ReadKey();
     }
 }

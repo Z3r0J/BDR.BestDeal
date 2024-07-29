@@ -17,7 +17,7 @@ public class Wrapper
         }
         catch (Exception e)
         {
-            Debug.Write($"Could not be get a deal from company {companyName} with error: {e.Message}");
+            Debug.Write($"Could not get a deal from company {companyName} with error: {e.Message}");
             return Response.Create(null,companyName);
         }
     }

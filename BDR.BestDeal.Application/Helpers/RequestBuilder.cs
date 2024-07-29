@@ -28,7 +28,7 @@ public static class RequestBuilder
 
     private static string GetPackageList(List<int> packages)
     {
-        if (packages is { Count: <= 0 }) return "<package/>";
+        if (packages is { Count: <= 0 }) return "<package>0</package>";
 
         var builder = new StringBuilder();
 

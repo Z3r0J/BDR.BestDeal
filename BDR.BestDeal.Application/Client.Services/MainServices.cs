@@ -19,11 +19,7 @@ public class MainServices
 
 
     public async Task<Response[]> GetDeals(Request request)
-    {
-        var retryPolicy = Policy
-            .Handle<HttpRequestException>()
-            .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
-
+    { 
         var taskResponse = await Task.WhenAll(
             Wrapper.SafeGetDealWithRetries(() => _cargonizer.GetDeal(request),"Cargonizer"),
             Wrapper.SafeGetDealWithRetries(() => _dimAddress.GetDeal(request), "DimAddress"),
