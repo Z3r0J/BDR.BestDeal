@@ -115,8 +115,8 @@ public class UnitTesting
     {
         //Arrange
         var packageResponse = PackageResponse.GetQuote(_request.ToPackage());
-        var consigneeResponse = ConsigneeResponse.GetTotal(_request.ToConsignee());
-        var warehouseResponse = WareHouseResponse.GetAmount(_request.ToWarehouse());
+        var consigneeResponse = ConsigneeResponse.GetAmount(_request.ToConsignee());
+        var warehouseResponse = WareHouseResponse.GetTotal(_request.ToWarehouse());
 
         //Act
         var packageClient = packageResponse.ToResponse();

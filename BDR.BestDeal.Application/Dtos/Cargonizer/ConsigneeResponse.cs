@@ -9,17 +9,17 @@ public record struct ConsigneeResponse
     {
         
     }
-    private ConsigneeResponse(float total)
+    private ConsigneeResponse(float amount)
     {
-        Total = total;
+        Amount = amount;
     }
-    [JsonPropertyName("total")]
-    public float Total { get; init; }
+    [JsonPropertyName("amount")]
+    public float Amount { get; init; }
 
-    public static ConsigneeResponse GetTotal(ConsigneeRequest request)
+    public static ConsigneeResponse GetAmount(ConsigneeRequest request)
     {
-        var total = CalculatorHelper.Calculator(request.Cartons);
+        var amount = CalculatorHelper.Calculator(request.Cartons);
 
-        return new ConsigneeResponse(total);
+        return new ConsigneeResponse(amount);
     }
 };

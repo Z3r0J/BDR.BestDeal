@@ -48,7 +48,7 @@
 #### Response
 ```json
 {
-  "amount": 44940
+  "total": 44940
 }
 ```
 
@@ -77,7 +77,7 @@
 #### Response
 ```json
 {
-  "total": 10350
+  "amount": 10350
 }
 ```
 

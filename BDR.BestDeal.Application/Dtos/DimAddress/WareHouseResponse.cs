@@ -10,17 +10,17 @@ public record struct WareHouseResponse
         
     }
 
-    private WareHouseResponse(float amount)
+    private WareHouseResponse(float total)
     {
-        Amount = amount;
+        Total = total;
     }
     
-    [JsonPropertyName("amount")]
-    public float Amount { get; init; }
+    [JsonPropertyName("total")]
+    public float Total { get; init; }
 
-    public static WareHouseResponse GetAmount(WareHouseRequest request)
+    public static WareHouseResponse GetTotal(WareHouseRequest request)
     {
-        var amount = CalculatorHelper.Calculator(request.Dimensions);
-        return new WareHouseResponse(amount);
+        var total = CalculatorHelper.Calculator(request.Dimensions);
+        return new WareHouseResponse(total);
     }
 }
