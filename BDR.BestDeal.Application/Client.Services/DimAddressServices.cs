@@ -7,10 +7,24 @@ using BDR.BestDeal.Application.Mapping;
 
 namespace BDR.BestDeal.Application.Client.Services;
 
-public class DimAddressServices(IHttpClientFactory factory) : IGenericService
+/// <summary>
+/// Provides services for interacting with the DimAddress API to get deals.
+/// </summary>
+public class DimAddressServices : IGenericService
 {
-    private readonly IHttpClientFactory _factory = factory;
+    private readonly IHttpClientFactory _factory;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DimAddressServices"/> class.
+    /// </summary>
+    /// <param name="factory">The HTTP client factory used to create HTTP clients.</param>
+    public DimAddressServices(IHttpClientFactory factory) => _factory = factory;
+
+    /// <summary>
+    /// Retrieves a deal based on the provided request details, specifically tailored for warehouse data.
+    /// </summary>
+    /// <param name="request">The request details used to fetch the deal, including addresses and dimensions.</param>
+    /// <returns>A <see cref="Response"/> object containing the deal information.</returns>
     public async Task<Response> GetDeal(Request request)
     {
         var httpClient = _factory.CreateClient(Constants.DimAddressClient);

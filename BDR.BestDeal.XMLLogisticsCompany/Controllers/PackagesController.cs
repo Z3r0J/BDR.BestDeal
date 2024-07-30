@@ -10,9 +10,18 @@ public class PackagesController(IValidator<PackageRequest> validator) : Controll
 {
     private readonly IValidator<PackageRequest> _validator = validator;
 
+    /// <summary>
+    /// Processes the PackageRequest to calculate a quote based on the package details provided in XML format.
+    /// </summary>
+    /// <param name="request">The package request details.</param>
+    /// <returns>A successful response with the calculated quote or an error message if validation fails.</returns>
+    /// <response code="200">Returns the calculated quote as XML</response>
+    /// <response code="400">Returned when validation fails with detailed error messages</response>
     [HttpPost]
     [Consumes("application/xml")]
     [Produces("application/xml")]
+    [ProducesResponseType(typeof(PackageResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetQuoteAsync([FromBody]PackageRequest request)
     {
         var validation = await request.Validate(_validator);

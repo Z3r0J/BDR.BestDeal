@@ -7,15 +7,27 @@ using BDR.BestDeal.Application.Mapping;
 
 namespace BDR.BestDeal.Application.Client.Services;
 
+/// <summary>
+/// Provides services for interacting with the Cargonizer API to get deals.
+/// </summary>
 public class CargonizerServices : IGenericService
 {
     private readonly IHttpClientFactory _factory;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CargonizerServices"/> class.
+    /// </summary>
+    /// <param name="factory">The HTTP client factory used to create HTTP clients.</param>
     public CargonizerServices(IHttpClientFactory factory)
     {
         _factory = factory;
     }
 
+    /// <summary>
+    /// Retrieves a deal based on the provided request details.
+    /// </summary>
+    /// <param name="request">The request details used to fetch the deal.</param>
+    /// <returns>A <see cref="Response"/> object containing the deal information.</returns>
     public async Task<Response> GetDeal(Request request)
     {
         var httpClient = _factory.CreateClient(Constants.CargonizerClient);
