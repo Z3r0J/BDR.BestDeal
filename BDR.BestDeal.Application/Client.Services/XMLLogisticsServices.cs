@@ -1,5 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using System.Text.Json;
+using System.Xml.Serialization;
 using BDR.BestDeal.Application.Client.Entities;
+using BDR.BestDeal.Application.Dtos;
 using BDR.BestDeal.Application.Dtos.XMLLogistics;
 using BDR.BestDeal.Application.Helpers;
 using BDR.BestDeal.Application.Interfaces;
@@ -36,6 +38,17 @@ public class XmlLogisticsServices : IGenericService
         var xmlRequest = RequestBuilder.XmlRequest(packageRequest);
 
         var response = await httpClient.PostAsync("api/Packages", xmlRequest);
+
+        if (!response.IsSuccessStatusCode && (int)response.StatusCode is >= 400 and < 500)
+        {
+            var errorString = await response.Content.ReadAsStringAsync();
+
+            var problemDetails = JsonSerializer.Deserialize<ProblemDtoResponse>(errorString);
+            Console.WriteLine(problemDetails);
+
+            return Response.Create(null, "XMLLogistics");
+        }
+
         response.EnsureSuccessStatusCode();
 
         var serializer = new XmlSerializer(typeof(PackageResponse));

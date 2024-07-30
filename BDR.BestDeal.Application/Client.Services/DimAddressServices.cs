@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using BDR.BestDeal.Application.Client.Entities;
+using BDR.BestDeal.Application.Dtos;
 using BDR.BestDeal.Application.Dtos.DimAddress;
 using BDR.BestDeal.Application.Helpers;
 using BDR.BestDeal.Application.Interfaces;
@@ -32,6 +33,17 @@ public class DimAddressServices : IGenericService
         var jsonRequest = RequestBuilder.JsonRequest(wareHouseRequest);
 
         var httpResponse = await httpClient.PostAsync("api/Warehouses", jsonRequest);
+
+        if (!httpResponse.IsSuccessStatusCode && (int)httpResponse.StatusCode is >= 400 and < 500)
+        {
+            var errorString = await httpResponse.Content.ReadAsStringAsync();
+
+            var problemDetails = JsonSerializer.Deserialize<ProblemDtoResponse>(errorString);
+            Console.WriteLine(problemDetails);
+
+            return Response.Create(null, "DimAddress");
+        }
+
         httpResponse.EnsureSuccessStatusCode();
         var jsonStringResponse = await httpResponse.Content.ReadAsStringAsync();
         var wareHouseResponse = JsonSerializer.Deserialize<WareHouseResponse>(jsonStringResponse);
