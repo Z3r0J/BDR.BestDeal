@@ -1,6 +1,15 @@
-@BDR.BestDeal.XMLLogisticsCompany_HostAddress = http://localhost:5268
+### Solicitud POST para obtener la cotización del paquete
+POST http://localhost:5268/api/packages
+Content-Type: application/xml
+Accept: application/xml
 
-GET {{BDR.BestDeal.XMLLogisticsCompany_HostAddress}}/weatherforecast/
-Accept: application/json
-
+<root>
+  <source>New York</source>
+  <destination>Los Angeles</destination>
+  <packages>
+    <package>1</package>
+    <package>2</package>
+    <package>3</package>
+  </packages>
+</root>
 ###

@@ -15,7 +15,7 @@ public record struct WareHouseResponse
         Amount = amount;
     }
     
-    [JsonPropertyName("total")]
+    [JsonPropertyName("amount")]
     public float Amount { get; init; }
 
     public static WareHouseResponse GetAmount(WareHouseRequest request)

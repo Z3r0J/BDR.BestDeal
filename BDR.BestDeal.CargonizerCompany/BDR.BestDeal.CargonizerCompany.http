@@ -1,6 +1,9 @@
-@BDR.BestDeal.CargonizerCompany_HostAddress = http://localhost:5220
+### Solicitud POST para obtener el total de Consignee
+POST http://localhost:5220/api/consignees
+Content-Type: application/json
 
-GET {{BDR.BestDeal.CargonizerCompany_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
+{
+  "Consignee": "John Doe",
+  "Consignor": "Jane Smith",
+  "Cartons": [1, 2, 3]
+}
