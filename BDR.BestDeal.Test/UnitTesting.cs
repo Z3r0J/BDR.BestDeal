@@ -8,50 +8,57 @@ using BDR.BestDeal.Application.Helpers;
 using BDR.BestDeal.Application.Mapping;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace BDR.BestDeal.Test;
 
+/// <summary>
+/// Provides unit tests for various components of the BDR.BestDeal application,
+/// ensuring that mappings, request generation, and validations are functioning as expected.
+/// </summary>
 public class UnitTesting
 {
-    private readonly Request _request = Request.Create("Calle La Esperilla", "Calle Emilio Prud Homme", [1, 2, 3]);
+    private readonly Request _request = Request.Create("Calle La Esperilla", "Calle Emilio Prud Homme", new List<int> { 1, 2, 3 });
 
+    /// <summary>
+    /// Verifies that a ConsigneeRequest can be properly created from a generic Request object.
+    /// </summary>
     [Fact]
     public void Should_Create_A_Consignee_Request()
     {
-        //Act
-        
+        // Act
         var result = new ConsigneeRequest(_request.SourceAddress, _request.DestinationAddress, _request.CartonDimensions);
 
         // Arrange
-
         var consigneeRequest = _request.ToConsignee();
 
-        //Assert
-
+        // Assert
         Assert.Equal(result, consigneeRequest);
     }
 
+    /// <summary>
+    /// Verifies that a WareHouseRequest can be properly created from a generic Request object.
+    /// </summary>
     [Fact]
     public void Should_Create_A_Warehouse_Request()
     {
-        //Act
-
+        // Act
         var result = new WareHouseRequest(_request.SourceAddress, _request.DestinationAddress, _request.CartonDimensions);
 
         // Arrange
-
         var wareHouseRequest = _request.ToWarehouse();
 
-        //Assert
-
+        // Assert
         Assert.Equal(result, wareHouseRequest);
     }
 
+    /// <summary>
+    /// Verifies that a PackageRequest can be properly created from a generic Request object.
+    /// </summary>
     [Fact]
     public void Should_Create_A_Package_Request()
     {
-        //Act
-
+        // Act
         var result = new PackageRequest
         {
             Destination = _request.DestinationAddress,
@@ -60,24 +67,28 @@ public class UnitTesting
         };
 
         // Arrange
-
         var packageRequest = _request.ToPackage();
 
-        //Assert
-
+        // Assert
         Assert.Equal(result, packageRequest);
     }
 
+    /// <summary>
+    /// Tests the CalculatorHelper to ensure it returns a valid float value when calculating the deal.
+    /// </summary>
     [Fact]
     public void Should_Calculate_The_Package_Deal()
     {
-        //Arrange
+        // Arrange
         var result = CalculatorHelper.Calculator(_request.CartonDimensions);
 
-        //Assert
-        Assert.IsType(typeof(float), result);
+        // Assert
+        Assert.IsType<float>(result);
     }
 
+    /// <summary>
+    /// Tests the JsonRequest method to ensure it returns valid JSON content with appropriate headers.
+    /// </summary>
     [Fact]
     public void JsonRequest_ReturnsValidJsonContent()
     {
@@ -91,6 +102,9 @@ public class UnitTesting
         Assert.Equal(expectedJson, result.ReadAsStringAsync().Result);
     }
 
+    /// <summary>
+    /// Tests the XmlRequest method to ensure it returns valid XML content with appropriate headers.
+    /// </summary>
     [Fact]
     public void XmlRequest_ReturnsValidXmlContent()
     {
@@ -110,29 +124,35 @@ public class UnitTesting
         Assert.Equal("application/xml; charset=utf-8", result.Headers.ContentType?.ToString());
     }
 
+    /// <summary>
+    /// Tests conversion of API responses to client responses ensuring the type is as expected.
+    /// </summary>
     [Fact]
     public void Should_Convert_Api_Response_To_Client_Response()
     {
-        //Arrange
+        // Arrange
         var packageResponse = PackageResponse.GetQuote(_request.ToPackage());
         var consigneeResponse = ConsigneeResponse.GetAmount(_request.ToConsignee());
         var warehouseResponse = WareHouseResponse.GetTotal(_request.ToWarehouse());
 
-        //Act
+        // Act
         var packageClient = packageResponse.ToResponse();
         var consigneeClient = consigneeResponse.ToResponse();
         var warehouseClient = warehouseResponse.ToResponse();
-        
-        //Assert
-        Assert.IsType(typeof(Response),packageClient);
-        Assert.IsType(typeof(Response), consigneeClient);
-        Assert.IsType(typeof(Response), warehouseClient);
+
+        // Assert
+        Assert.IsType<Response>(packageClient);
+        Assert.IsType<Response>(consigneeClient);
+        Assert.IsType<Response>(warehouseClient);
     }
 
+    /// <summary>
+    /// Tests API request validation to ensure that valid requests are recognized correctly by validators.
+    /// </summary>
     [Fact]
     public async Task Should_Validate_Api_Request_And_Return_True_If_Is_Valid()
     {
-        //Arrange
+        // Arrange
         var packageRequest = _request.ToPackage();
         var consigneeRequest = _request.ToConsignee();
         var warehouseRequest = _request.ToWarehouse();
@@ -144,14 +164,13 @@ public class UnitTesting
         var packageValidator = serviceProvider.GetRequiredService<IValidator<PackageRequest>>();
         var consigneeValidator = serviceProvider.GetRequiredService<IValidator<ConsigneeRequest>>();
         var warehouseValidator = serviceProvider.GetRequiredService<IValidator<WareHouseRequest>>();
-        
-        //Act
+
+        // Act
         var packageValidationResult = await packageRequest.Validate(packageValidator);
         var consigneeValidationResult = await consigneeRequest.Validate(consigneeValidator);
         var warehouseValidationResult = await warehouseRequest.Validate(warehouseValidator);
 
-        //Assert
-
+        // Assert
         Assert.True(warehouseValidationResult is { IsValid: true });
         Assert.True(consigneeValidationResult is { IsValid: true });
         Assert.True(packageValidationResult is { IsValid: true });
